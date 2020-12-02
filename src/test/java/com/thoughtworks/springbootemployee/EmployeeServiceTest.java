@@ -95,4 +95,18 @@ public class EmployeeServiceTest {
         assertEquals(22222, actual.getSalary());
     }
 
+    @Test
+    public void should_delete_employee_when_delete_given_an_employeeId() {
+        //given
+        EmployeeRepository employeeRepository = new EmployeeRepository();
+        EmployeeService employeeService = new EmployeeService(employeeRepository);
+        employeeService.create(new Employee(2,"david",22,"male",22222));
+
+        //when
+        employeeService.delete(2);
+
+        //then
+        assertEquals(null, employeeService.getEmployee(2));
+    }
+
 }
