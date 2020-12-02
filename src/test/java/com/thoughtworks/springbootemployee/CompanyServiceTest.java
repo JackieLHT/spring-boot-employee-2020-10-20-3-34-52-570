@@ -79,7 +79,7 @@ public class CompanyServiceTest {
         List<Employee> actual = companyService.getCompanyEmployees(1);
 
         //then
-        assertEquals(employees1, companyService.getCompany(1));
+        assertEquals(employees1, companyService.getCompanyEmployees(1));
 
     }
 }

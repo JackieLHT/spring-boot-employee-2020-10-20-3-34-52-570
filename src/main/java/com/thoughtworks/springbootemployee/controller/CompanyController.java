@@ -30,4 +30,9 @@ public class CompanyController {
         //change null to exception
         return companyService.getCompany(companyId);
     }
+
+    @GetMapping("/{companyId}/employees")
+    public List<Employee> getCompanyEmployees(@PathVariable Integer companyId) {
+        return companyService.getCompanyEmployees(companyId);
+    }
 }

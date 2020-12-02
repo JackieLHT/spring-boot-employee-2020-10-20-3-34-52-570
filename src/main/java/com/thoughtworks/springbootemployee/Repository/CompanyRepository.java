@@ -1,5 +1,7 @@
 package com.thoughtworks.springbootemployee.Repository;
 import com.thoughtworks.springbootemployee.controller.Company;
+import com.thoughtworks.springbootemployee.controller.Employee;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,5 +19,10 @@ public class CompanyRepository {
 
     public Company getCompany(Integer companyId) {
         return companies.stream().filter(company -> companyId.equals(company.getCompanyId())).findFirst().orElse(null);
+    }
+
+    public List<Employee> getCompanyEmployees(Integer companyId) {
+        Company target = companies.stream().filter(company -> companyId.equals(company.getCompanyId())).findFirst().orElse(null);
+        return target.getEmployees();
     }
 }
