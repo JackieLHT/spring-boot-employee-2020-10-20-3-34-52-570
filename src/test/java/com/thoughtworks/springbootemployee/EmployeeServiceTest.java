@@ -76,4 +76,23 @@ public class EmployeeServiceTest {
         assertEquals(expected,actual);
     }
 
+    @Test
+    public void should_update_employee_when_update_given_an_employeeId_and_request_info() {
+        //given
+        EmployeeRepository employeeRepository = new EmployeeRepository();
+        EmployeeService employeeService = new EmployeeService(employeeRepository);
+        employeeService.create(new Employee(2,"david",22,"male",22222));
+        Employee expected = new Employee(2,"jackie",22,"female",22222);
+
+        //when
+        Employee actual = employeeService.update(2,expected);
+
+        //then
+        assertEquals(2, actual.getId());
+        assertEquals("jackie", actual.getName());
+        assertEquals(22, actual.getAge());
+        assertEquals("female", actual.getGender());
+        assertEquals(22222, actual.getSalary());
+    }
+
 }
