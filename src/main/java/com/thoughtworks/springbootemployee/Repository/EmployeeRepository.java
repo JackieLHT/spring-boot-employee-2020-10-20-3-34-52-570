@@ -28,4 +28,10 @@ public class EmployeeRepository {
         });
         return employeeUpdate;
     }
+
+    public void delete(Integer employeeId) {
+        employees.stream().filter(employee -> employeeId.equals(employee.getId())).findFirst().ifPresent(employee -> {
+            employees.remove(employee);
+        });
+    }
 }
