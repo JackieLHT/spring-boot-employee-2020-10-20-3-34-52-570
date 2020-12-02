@@ -19,4 +19,8 @@ public class CompanyService {
     public Company create(Company company) {
         return companyRepository.create(company);
     }
+
+    public Company getCompany(Integer companyId) {
+        return null;
+    }
 }

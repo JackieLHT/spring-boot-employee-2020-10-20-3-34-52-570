@@ -22,8 +22,8 @@ public class CompanyServiceTest {
         CompanyService companyService = new CompanyService(companyRepository);
         List<Employee> employees = new ArrayList<>();
         employees.add(new Employee(1,"david",22,"male",11111));
-        employees.add(new Employee(1, "Jackie", 22, "female", 99999));
-        final List<Company> expected = Arrays.asList(new Company("OOCL",employees));
+        employees.add(new Employee(1, "Jackie", 22, "female", 11111));
+        final List<Company> expected = Arrays.asList(new Company(1,"OOCL",employees));
         when(companyRepository.getAll()).thenReturn(expected);
 
         final List<Company> actual = companyService.getAll();
@@ -37,12 +37,30 @@ public class CompanyServiceTest {
         CompanyService companyService = new CompanyService(companyRepository);
         List<Employee> employees = new ArrayList<>();
         employees.add(new Employee(1,"david",22,"male",11111));
-        employees.add(new Employee(2, "Jackie", 22, "female", 99999));
-        Company actual = companyService.create(new Company("OOCL",employees));
+        employees.add(new Employee(2, "Jackie", 22, "female", 11111));
+        Company actual = companyService.create(new Company(1,"OOCL",employees));
 
         //then
         assertEquals("OOCL", actual.getName());
         assertEquals(2, actual.getEmployeeNumber());
         assertEquals(employees, actual.getEmployees());
+    }
+
+    @Test
+    public void should_return_specific_company_when_getCompany_given_companyId() {
+        CompanyRepository companyRepository = new CompanyRepository();
+        CompanyService companyService = new CompanyService(companyRepository);
+        List<Employee> employees1 = new ArrayList<>();
+        List<Employee> employees2 = new ArrayList<>();
+        employees1.add(new Employee(1,"david",22,"male",11111));
+        employees1.add(new Employee(2, "Jackie", 22, "female", 11111));
+        employees2.add(new Employee(3, "sam", 24, "male", 99999));
+        companyService.create(new Company(2,"ABC",employees2));
+        Company expected = companyService.create(new Company(1,"OOCL",employees1));
+
+
+        //then
+        assertEquals(expected, companyService.getCompany(1));
+
     }
 }
