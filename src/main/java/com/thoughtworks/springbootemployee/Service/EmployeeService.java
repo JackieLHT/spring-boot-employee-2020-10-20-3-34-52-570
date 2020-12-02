@@ -21,7 +21,7 @@ public class EmployeeService {
         return employee;
     }
 
-    public Employee getEmployee(int i) {
-        return null;
+    public Employee getEmployee(Integer employeeId) {
+        return employeeRepository.getEmployee(employeeId);
     }
 }
