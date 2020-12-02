@@ -4,12 +4,26 @@ import com.thoughtworks.springbootemployee.Service.EmployeeService;
 import com.thoughtworks.springbootemployee.controller.Employee;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.when;
+import org.mockito.junit.jupiter.MockitoExtension;
+
 import java.util.Arrays;
 import java.util.List;
 
+//@ExtendWith(MockitoExtension.class)
 public class EmployeeServiceTest {
+//    @InjectMocks
+//    private EmployeeService employeeService;
+//
+//    @Mock
+//    private EmployeeRepository employeeRepository;
+
     @Test
     public void should_return_all_employees_when_get_all_given_all_employees() {
         //given
@@ -23,6 +37,27 @@ public class EmployeeServiceTest {
 
         //then
         assertEquals(expected,employees);
+    }
+
+    @Test
+    public void should_pass_employee_data_when_create_employee_give_nothing_in_database() {
+        //given
+        EmployeeRepository employeeRepository = Mockito.mock(EmployeeRepository.class);
+        EmployeeService employeeService = new EmployeeService(employeeRepository);
+        Employee employee = new Employee(1, "Jackie", 22, "female", 99999);
+
+        //when
+        employeeService.create(employee);
+        final ArgumentCaptor<Employee> employeeArgumentCaptor = ArgumentCaptor.forClass(Employee.class);
+        verify(employeeRepository, times(1)).create(employeeArgumentCaptor.capture());
+
+        //then
+        final Employee actual = employeeService.create(employee);
+        assertEquals(1, actual.getId());
+        assertEquals("Jackie", actual.getName());
+        assertEquals(22, actual.getAge());
+        assertEquals("female", actual.getGender());
+        assertEquals(99999, actual.getSalary());
     }
 
 }
