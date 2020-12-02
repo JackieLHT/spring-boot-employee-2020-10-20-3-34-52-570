@@ -96,7 +96,7 @@ public class CompanyServiceTest {
 
         //then
         assertEquals(1, acutal.getCompanyId());
-        assertEquals("ABCC", acutal.getCompanyId());
+        assertEquals("ABCC", acutal.getName());
         assertEquals(2, acutal.getEmployeeNumber());
         assertEquals(employees1,acutal.getEmployees());
 

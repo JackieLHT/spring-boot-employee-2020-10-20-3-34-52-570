@@ -25,4 +25,12 @@ public class CompanyRepository {
         Company target = companies.stream().filter(company -> companyId.equals(company.getCompanyId())).findFirst().orElse(null);
         return target.getEmployees();
     }
+
+    public Company update(Integer companyId, Company companyUpdate) {
+        companies.stream().filter(company -> companyId.equals(company.getCompanyId())).findFirst().ifPresent(company -> {
+            companies.remove(companyUpdate);
+            companies.add(companyUpdate);
+        });
+        return companyUpdate;
+    }
 }

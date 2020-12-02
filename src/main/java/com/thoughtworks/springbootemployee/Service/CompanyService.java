@@ -30,6 +30,6 @@ public class CompanyService {
     }
 
     public Company update(Integer companyId, Company companyUpdate) {
-        return null;
+        return companyRepository.update(companyId,companyUpdate);
     }
 }
