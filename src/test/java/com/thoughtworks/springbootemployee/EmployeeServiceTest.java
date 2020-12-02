@@ -131,4 +131,25 @@ public class EmployeeServiceTest {
         assertEquals(expected, acutal);
     }
 
+    @Test
+    public void should_return_first_two_employees_when_getPaginatedAll_given_page_1_and_pageSize_2() {
+        //given
+        EmployeeRepository employeeRepository = new EmployeeRepository();
+        EmployeeService employeeService = new EmployeeService(employeeRepository);
+        Employee employee1 = new Employee(1,"david",22,"male",22222);
+        Employee employee2 = new Employee(2,"sam",24,"male",11111);
+        List<Employee> expected = new ArrayList<>();
+        expected.add(employee1);
+        expected.add(employee2);
+        employeeService.create(employee1);
+        employeeService.create(employee2);
+        employeeService.create(new Employee(3,"jackie",22,"female",22222));
+
+        //when
+        List<Employee> acutal = employeeService.getPaginatedAll(1,2);
+
+        //then
+        assertEquals(expected, acutal);
+    }
+
 }
