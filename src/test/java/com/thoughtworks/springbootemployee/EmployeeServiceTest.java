@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -107,6 +108,27 @@ public class EmployeeServiceTest {
 
         //then
         assertEquals(null, employeeService.getEmployee(2));
+    }
+
+    @Test
+    public void should_return_all_male_employees_when_getByGender_given_male() {
+        //given
+        EmployeeRepository employeeRepository = new EmployeeRepository();
+        EmployeeService employeeService = new EmployeeService(employeeRepository);
+        Employee employee1 = new Employee(1,"david",22,"male",22222);
+        Employee employee2 = new Employee(2,"sam",24,"male",11111);
+        List<Employee> expected = new ArrayList<>();
+        expected.add(employee1);
+        expected.add(employee2);
+        employeeService.create(employee1);
+        employeeService.create(employee2);
+        employeeService.create(new Employee(3,"jackie",22,"female",22222));
+
+        //when
+        List<Employee> acutal = employeeService.getByGender("male");
+
+        //then
+        assertEquals(expected, acutal);
     }
 
 }

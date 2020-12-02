@@ -32,4 +32,8 @@ public class EmployeeService {
     public void delete(Integer employeeId) {
         employeeRepository.delete(employeeId);
     }
+
+    public List<Employee> getByGender(String gender) {
+        return null;
+    }
 }
