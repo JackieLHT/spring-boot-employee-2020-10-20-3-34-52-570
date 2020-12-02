@@ -63,4 +63,23 @@ public class CompanyServiceTest {
         assertEquals(expected, companyService.getCompany(1));
 
     }
+
+    @Test
+    public void should_return_employee_list_of_specific_company_when_getCompanyEmployees_given_companyId_and_employees() {
+        CompanyRepository companyRepository = new CompanyRepository();
+        CompanyService companyService = new CompanyService(companyRepository);
+        List<Employee> employees1 = new ArrayList<>();
+        List<Employee> employees2 = new ArrayList<>();
+        employees1.add(new Employee(1,"david",22,"male",11111));
+        employees1.add(new Employee(2, "Jackie", 22, "female", 11111));
+        employees2.add(new Employee(3, "sam", 24, "male", 99999));
+        companyService.create(new Company(1,"OOCL",employees1));
+        companyService.create(new Company(2,"ABC",employees2));
+
+        List<Employee> actual = companyService.getCompanyEmployees(1);
+
+        //then
+        assertEquals(employees1, companyService.getCompany(1));
+
+    }
 }

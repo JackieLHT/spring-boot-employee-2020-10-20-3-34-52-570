@@ -2,6 +2,7 @@ package com.thoughtworks.springbootemployee.Service;
 
 import com.thoughtworks.springbootemployee.Repository.CompanyRepository;
 import com.thoughtworks.springbootemployee.controller.Company;
+import com.thoughtworks.springbootemployee.controller.Employee;
 
 import java.util.List;
 
@@ -22,5 +23,9 @@ public class CompanyService {
 
     public Company getCompany(Integer companyId) {
         return companyRepository.getCompany(companyId);
+    }
+
+    public List<Employee> getCompanyEmployees(Integer companyId) {
+        return null;
     }
 }
