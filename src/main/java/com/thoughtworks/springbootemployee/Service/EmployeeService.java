@@ -17,8 +17,7 @@ public class EmployeeService {
     }
 
     public Employee create(Employee employee) {
-        employeeRepository.create(employee);
-        return employee;
+        return employeeRepository.create(employee);
     }
 
     public Employee getEmployee(Integer employeeId) {

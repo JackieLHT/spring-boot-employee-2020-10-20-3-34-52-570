@@ -11,13 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//@ExtendWith(MockitoExtension.class)
 public class EmployeeServiceTest {
-//    @InjectMocks
-//    private EmployeeService employeeService;
-//
-//    @Mock
-//    private EmployeeRepository employeeRepository;
 
     @Test
     public void should_return_all_employees_when_get_all_given_all_employees() {
@@ -39,15 +33,13 @@ public class EmployeeServiceTest {
         //given
         EmployeeRepository employeeRepository = Mockito.mock(EmployeeRepository.class);
         EmployeeService employeeService = new EmployeeService(employeeRepository);
-        Employee employee = new Employee(1, "Jackie", 22, "female", 99999);
-
         //when
-        employeeService.create(employee);
+        employeeService.create(new Employee(1, "Jackie", 22, "female", 99999));
         final ArgumentCaptor<Employee> employeeArgumentCaptor = ArgumentCaptor.forClass(Employee.class);
         verify(employeeRepository, times(1)).create(employeeArgumentCaptor.capture());
 
         //then
-        final Employee actual = employeeService.create(employee);
+        final Employee actual = employeeArgumentCaptor.getValue();
         assertEquals(1, actual.getId());
         assertEquals("Jackie", actual.getName());
         assertEquals(22, actual.getAge());
