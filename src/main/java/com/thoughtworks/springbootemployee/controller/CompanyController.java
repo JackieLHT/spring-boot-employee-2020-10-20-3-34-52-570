@@ -45,4 +45,11 @@ public class CompanyController {
     public void delete(@PathVariable Integer companyId) {
         companyService.delete(companyId);
     }
+
+    @GetMapping(
+            params = {"page", "pageSize"}
+    )
+    public List<Company> getPaginatedAll(@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer pageSize) {
+        return companyService.getPaginatedAll(page, pageSize);
+    }
 }

@@ -4,6 +4,7 @@ import com.thoughtworks.springbootemployee.controller.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CompanyRepository {
     private List<Company> companies = new ArrayList<>();
@@ -38,5 +39,12 @@ public class CompanyRepository {
         companies.stream().filter(company -> companyId.equals(company.getCompanyId())).findFirst().ifPresent(company -> {
             companies.remove(company);
         });
+    }
+
+    public List<Company> getPaginatedAll(Integer page, Integer pageSize) {
+        page = page - 1;
+        return companies.stream().skip(page * pageSize)
+                .limit(pageSize)
+                .collect(Collectors.toList());
     }
 }

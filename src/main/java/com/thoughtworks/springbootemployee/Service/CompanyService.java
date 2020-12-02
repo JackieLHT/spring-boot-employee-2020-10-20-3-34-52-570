@@ -38,6 +38,6 @@ public class CompanyService {
     }
 
     public List<Company> getPaginatedAll(Integer page, Integer pageSize) {
-        return null;
+        return companyRepository.getPaginatedAll(page, pageSize);
     }
 }
