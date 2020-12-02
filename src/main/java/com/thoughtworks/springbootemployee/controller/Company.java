@@ -13,7 +13,7 @@ public class Company {
         this.employeeNumber = employees.size();
     }
 
-    public String getCompanyName() {
+    public String getName() {
         return companyName;
     }
 

@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
-    private List<Employee> employees = new ArrayList<>();
     private EmployeeService employeeService;
 
     @GetMapping(
