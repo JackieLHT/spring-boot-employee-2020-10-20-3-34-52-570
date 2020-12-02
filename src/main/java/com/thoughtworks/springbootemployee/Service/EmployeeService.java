@@ -20,4 +20,8 @@ public class EmployeeService {
         employeeRepository.create(employee);
         return employee;
     }
+
+    public Employee getEmployee(int i) {
+        return null;
+    }
 }

@@ -60,4 +60,20 @@ public class EmployeeServiceTest {
         assertEquals(99999, actual.getSalary());
     }
 
+    @Test
+    public void should_return_a_specific_employee_when_getEmployee_given_an_employeeId() {
+        //given
+        EmployeeRepository employeeRepository = new EmployeeRepository();
+        EmployeeService employeeService = new EmployeeService(employeeRepository);
+        employeeService.create(new Employee(1,"david",22,"male",99999));
+        Employee expected = new Employee(2,"jackie",22,"female",22222);
+        employeeService.create(expected);
+
+        //when
+        Employee actual = employeeService.getEmployee(2);
+
+        //then
+        assertEquals(expected,actual);
+    }
+
 }
