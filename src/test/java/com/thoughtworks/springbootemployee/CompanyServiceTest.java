@@ -101,4 +101,21 @@ public class CompanyServiceTest {
         assertEquals(employees1,acutal.getEmployees());
 
     }
+
+    @Test
+    public void should_delete_employee_when_delete_given_an_employeeId() {
+        //given
+        CompanyRepository companyRepository = new CompanyRepository();
+        CompanyService companyService = new CompanyService(companyRepository);
+        List<Employee> employees1 = new ArrayList<>();
+        employees1.add(new Employee(1,"david",22,"male",11111));
+        employees1.add(new Employee(2, "Jackie", 22, "female", 11111));
+        companyService.create(new Company(1,"OOCL",employees1));
+
+        //when
+        companyService.delete(1);
+
+        //then
+        assertEquals(null, companyService.getCompany(1));
+    }
 }

@@ -32,4 +32,7 @@ public class CompanyService {
     public Company update(Integer companyId, Company companyUpdate) {
         return companyRepository.update(companyId,companyUpdate);
     }
+
+    public void delete(Integer companyId) {
+    }
 }
