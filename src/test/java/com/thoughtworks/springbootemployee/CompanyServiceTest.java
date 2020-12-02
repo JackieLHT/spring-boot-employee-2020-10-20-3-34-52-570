@@ -37,7 +37,7 @@ public class CompanyServiceTest {
         CompanyService companyService = new CompanyService(companyRepository);
         List<Employee> employees = new ArrayList<>();
         employees.add(new Employee(1,"david",22,"male",11111));
-        employees.add(new Employee(1, "Jackie", 22, "female", 99999));
+        employees.add(new Employee(2, "Jackie", 22, "female", 99999));
         Company company = new Company("OOCL",employees);
 
         companyService.create(company);

@@ -20,9 +20,8 @@ public class CompanyController {
         return companyService.getAll();
     }
 
-//    @PostMapping
-//    public Company create(@RequestBody Company company) {
-//        companies.add(company);
-//        return company;
-//    }
+    @PostMapping
+    public Company create(@RequestBody Company company) {
+        return companyService.create(company);
+    }
 }
