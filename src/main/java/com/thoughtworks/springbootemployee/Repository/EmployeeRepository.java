@@ -5,6 +5,7 @@ import com.thoughtworks.springbootemployee.controller.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EmployeeRepository {
     private List<Employee> employees = new ArrayList<>();
@@ -33,5 +34,9 @@ public class EmployeeRepository {
         employees.stream().filter(employee -> employeeId.equals(employee.getId())).findFirst().ifPresent(employee -> {
             employees.remove(employee);
         });
+    }
+
+    public List<Employee> getByGender(String gender) {
+        return employees.stream().filter(employee -> employee.getGender().equals(gender)).collect(Collectors.toList());
     }
 }
