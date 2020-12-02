@@ -82,4 +82,23 @@ public class CompanyServiceTest {
         assertEquals(employees1, companyService.getCompanyEmployees(1));
 
     }
+
+    @Test
+    public void should_update_company_when_update_given_companyId_and_request_info() {
+        CompanyRepository companyRepository = new CompanyRepository();
+        CompanyService companyService = new CompanyService(companyRepository);
+        List<Employee> employees1 = new ArrayList<>();
+        employees1.add(new Employee(1,"david",22,"male",11111));
+        employees1.add(new Employee(2, "Jackie", 22, "female", 11111));
+        companyService.create(new Company(1,"OOCL",employees1));
+
+        Company acutal = companyService.update(1,new Company(1,"ABCC",employees1));
+
+        //then
+        assertEquals(1, acutal.getCompanyId());
+        assertEquals("ABCC", acutal.getCompanyId());
+        assertEquals(2, acutal.getEmployeeNumber());
+        assertEquals(employees1,acutal.getEmployees());
+
+    }
 }

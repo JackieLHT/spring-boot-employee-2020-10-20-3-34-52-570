@@ -28,4 +28,8 @@ public class CompanyService {
     public List<Employee> getCompanyEmployees(Integer companyId) {
         return companyRepository.getCompanyEmployees(companyId);
     }
+
+    public Company update(Integer companyId, Company companyUpdate) {
+        return null;
+    }
 }
