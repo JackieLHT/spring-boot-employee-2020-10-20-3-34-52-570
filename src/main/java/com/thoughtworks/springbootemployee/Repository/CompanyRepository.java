@@ -28,9 +28,15 @@ public class CompanyRepository {
 
     public Company update(Integer companyId, Company companyUpdate) {
         companies.stream().filter(company -> companyId.equals(company.getCompanyId())).findFirst().ifPresent(company -> {
-            companies.remove(companyUpdate);
+            companies.remove(company);
             companies.add(companyUpdate);
         });
         return companyUpdate;
+    }
+
+    public void delete(Integer companyId) {
+        companies.stream().filter(company -> companyId.equals(company.getCompanyId())).findFirst().ifPresent(company -> {
+            companies.remove(company);
+        });
     }
 }
