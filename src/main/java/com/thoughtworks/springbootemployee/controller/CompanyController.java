@@ -24,4 +24,10 @@ public class CompanyController {
     public Company create(@RequestBody Company company) {
         return companyService.create(company);
     }
+
+    @GetMapping("/{companyId}")
+    public Company getCompany(@PathVariable Integer companyId) {
+        //change null to exception
+        return companyService.getCompany(companyId);
+    }
 }

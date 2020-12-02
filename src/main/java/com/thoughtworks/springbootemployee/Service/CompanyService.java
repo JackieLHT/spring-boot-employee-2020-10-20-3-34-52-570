@@ -21,6 +21,6 @@ public class CompanyService {
     }
 
     public Company getCompany(Integer companyId) {
-        return null;
+        return companyRepository.getCompany(companyId);
     }
 }
