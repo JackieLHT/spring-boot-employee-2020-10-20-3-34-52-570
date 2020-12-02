@@ -118,4 +118,29 @@ public class CompanyServiceTest {
         //then
         assertEquals(null, companyService.getCompany(1));
     }
+
+    @Test
+    public void should_return_first_two_companies_when_getPaginatedAll_given_page_1_and_pageSize_2() {
+        //given
+        CompanyRepository companyRepository = new CompanyRepository();
+        CompanyService companyService = new CompanyService(companyRepository);
+        List<Employee> employeeList1 = new ArrayList<>();
+        List<Employee> employeeList2 = new ArrayList<>();
+        List<Employee> employeeList3 = new ArrayList<>();
+        employeeList1.add(new Employee(1,"david",22,"male",22222));
+        employeeList2.add(new Employee(2,"sam",24,"male",11111));
+        employeeList3.add(new Employee(3,"peter",25,"male",11111));
+        Company company1 = companyService.create(new Company(1,"OOCL",employeeList1));
+        Company company2 = companyService.create(new Company(2,"KMB",employeeList2));
+        companyService.create(new Company(3,"TVB",employeeList3));
+        List<Company> expected = new ArrayList<>();
+        expected.add(company1);
+        expected.add(company2);
+
+        //when
+        List<Company> acutal = companyService.getPaginatedAll(1,2);
+
+        //then
+        assertEquals(expected, acutal);
+    }
 }

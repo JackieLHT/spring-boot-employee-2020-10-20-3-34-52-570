@@ -36,4 +36,8 @@ public class CompanyService {
     public void delete(Integer companyId) {
         companyRepository.delete(companyId);
     }
+
+    public List<Company> getPaginatedAll(Integer page, Integer pageSize) {
+        return null;
+    }
 }
