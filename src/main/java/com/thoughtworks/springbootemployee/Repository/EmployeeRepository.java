@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 public class EmployeeRepository {
     private List<Employee> employees = new ArrayList<>();
+
     public List<Employee> getAll() {
         return employees;
     }
@@ -22,7 +23,7 @@ public class EmployeeRepository {
         return employees.stream().filter(employee -> employeeId.equals(employee.getId())).findFirst().orElse(null);
     }
 
-    public Employee update(Integer employeeId,Employee employeeUpdate) {
+    public Employee update(Integer employeeId, Employee employeeUpdate) {
         employees.stream().filter(employee -> employeeId.equals(employee.getId())).findFirst().ifPresent(employee -> {
             employees.remove(employee);
             employees.add(employeeUpdate);
@@ -38,5 +39,12 @@ public class EmployeeRepository {
 
     public List<Employee> getByGender(String gender) {
         return employees.stream().filter(employee -> employee.getGender().equals(gender)).collect(Collectors.toList());
+    }
+
+    public List<Employee> getPaginatedAll(Integer page, Integer pageSize) {
+        page = page - 1;
+        return employees.stream().skip(page * pageSize)
+                .limit(pageSize)
+                .collect(Collectors.toList());
     }
 }

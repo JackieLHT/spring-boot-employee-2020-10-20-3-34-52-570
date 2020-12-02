@@ -24,10 +24,7 @@ public class EmployeeController {
             params = {"page", "pageSize"}
     )
     public List<Employee> getPaginatedAll(@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer pageSize) {
-        page = page - 1;
-        return employees.stream().skip(page * pageSize)
-                .limit(pageSize)
-                .collect(Collectors.toList());
+        return employeeService.getPaginatedAll(page, pageSize);
     }
 
     @GetMapping
@@ -49,7 +46,7 @@ public class EmployeeController {
 
     @PutMapping("/{employeeId}")
     public Employee update(@PathVariable Integer employeeId, @RequestBody Employee employeeUpdate) {
-        return employeeService.update(employeeId,employeeUpdate);
+        return employeeService.update(employeeId, employeeUpdate);
     }
 
     @DeleteMapping("/{employeeId}")

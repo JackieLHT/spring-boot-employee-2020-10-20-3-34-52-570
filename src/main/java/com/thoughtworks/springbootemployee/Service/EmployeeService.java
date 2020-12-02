@@ -8,7 +8,7 @@ import java.util.List;
 public class EmployeeService {
     private EmployeeRepository employeeRepository;
 
-    public EmployeeService(EmployeeRepository employeeRepository){
+    public EmployeeService(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
 
@@ -26,7 +26,7 @@ public class EmployeeService {
     }
 
     public Employee update(Integer employeeId, Employee employeeUpdate) {
-        return employeeRepository.update(employeeId,employeeUpdate);
+        return employeeRepository.update(employeeId, employeeUpdate);
     }
 
     public void delete(Integer employeeId) {
@@ -38,6 +38,6 @@ public class EmployeeService {
     }
 
     public List<Employee> getPaginatedAll(Integer page, Integer pageSize) {
-        return null;
+        return employeeRepository.getPaginatedAll(page, pageSize);
     }
 }
